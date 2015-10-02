@@ -1,4 +1,4 @@
-Electrum - lightweight Bitcoin client
+Unobtanium Electrum - lightweight Bitcoin client
 =====================================
 
 ::
