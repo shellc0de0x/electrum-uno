@@ -466,7 +466,7 @@ class ElectrumWindow(QMainWindow):
 
     def show_about(self):
         QMessageBox.about(self, "Unobtanium Electrum",
-            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Unobtanium Electrum's focus is speed, with low resource usage and simplifying Unobtanium. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Unobtanium system.") + "\n\n" + +_("Thank you to the Bitcoin Electrum team at https://electrum.org for their continued development of Electrum for Bitcoin.") + "\n\n" + _("Unobtanium Electrum has been altered from Bitcoin Electrum by cryptapus. Donation are welcome (UNO): ucrYPTxQPKkb2WTU57PjurHbCHf3rACMJh"))
+            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Unobtanium Electrum's focus is speed, with low resource usage and simplifying Unobtanium. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Unobtanium system.") + "\n\n" + _("Thank you to the Bitcoin Electrum team at https://electrum.org for their continued development of Electrum for Bitcoin.") + "\n\n" + _("Unobtanium Electrum has been altered from Bitcoin Electrum by cryptapus. Donation are welcome (UNO): ucrYPTxQPKkb2WTU57PjurHbCHf3rACMJh"))
 
     def show_report_bug(self):
         QMessageBox.information(self, "Unobtanium Electrum - " + _("Reporting Bugs"),
