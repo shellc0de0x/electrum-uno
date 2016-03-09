@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # You probably need to update only this link
-ELECTRUM_GIT_URL=git://github.com/spesmilo/electrum.git
+ELECTRUM_GIT_URL=git://github.com/cryptapus/electrum-uno.git
 BRANCH=master
-NAME_ROOT=electrum
+NAME_ROOT=electrum-uno
 
 
 # These settings probably don't need any change
@@ -33,24 +33,24 @@ else
 fi
 
 cd electrum-git
-VERSION=`git describe --tags`
+VERSION=`git rev-parse HEAD | awk '{ print substr($1, 0, 11) }'`
 echo "Last commit: $VERSION"
 
 cd ..
 
-rm -rf $WINEPREFIX/drive_c/electrum
-cp -r electrum-git $WINEPREFIX/drive_c/electrum
+rm -rf $WINEPREFIX/drive_c/electrum-uno
+cp -r electrum-git $WINEPREFIX/drive_c/electrum-uno
 cp electrum-git/LICENCE .
 
 # add python packages (built with make_packages)
-cp -r ../../../packages $WINEPREFIX/drive_c/electrum/
+cp -r ../../../packages $WINEPREFIX/drive_c/electrum-uno/
 
 # add locale dir
-cp -r ../../../lib/locale $WINEPREFIX/drive_c/electrum/lib/
+cp -r ../../../lib/locale $WINEPREFIX/drive_c/electrum-uno/lib/
 
 # Build Qt resources
-wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum/icons.qrc -o C:/electrum/lib/icons_rc.py
-wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum/icons.qrc -o C:/electrum/gui/qt/icons_rc.py
+wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum-uno/icons.qrc -o C:/electrum-uno/lib/icons_rc.py
+wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum-uno/icons.qrc -o C:/electrum-uno/gui/qt/icons_rc.py
 
 cd ..
 
@@ -63,20 +63,20 @@ $PYTHON "C:/pyinstaller/pyinstaller.py" --noconfirm --ascii -w deterministic.spe
 wine "$WINEPREFIX/drive_c/Program Files (x86)/NSIS/makensis.exe" electrum.nsi
 
 cd dist
-mv electrum.exe $NAME_ROOT-$VERSION.exe
-mv electrum-setup.exe $NAME_ROOT-$VERSION-setup.exe
-mv electrum $NAME_ROOT-$VERSION
+mv electrum-uno.exe $NAME_ROOT-$VERSION.exe
+mv electrum-uno-setup.exe $NAME_ROOT-$VERSION-setup.exe
+mv electrum-uno $NAME_ROOT-$VERSION
 zip -r $NAME_ROOT-$VERSION.zip $NAME_ROOT-$VERSION
 cd ..
 
 # build portable version
-cp portable.patch $WINEPREFIX/drive_c/electrum
-pushd $WINEPREFIX/drive_c/electrum
+cp portable.patch $WINEPREFIX/drive_c/electrum-uno
+pushd $WINEPREFIX/drive_c/electrum-uno
 patch < portable.patch 
 popd
 $PYTHON "C:/pyinstaller/pyinstaller.py" --noconfirm --ascii -w deterministic.spec
 cd dist
-mv electrum.exe $NAME_ROOT-$VERSION-portable.exe
+mv electrum-uno.exe $NAME_ROOT-$VERSION-portable.exe
 cd ..
 
 echo "Done."
