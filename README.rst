@@ -1,3 +1,5 @@
+WARNING: currently not maintained
+=====================================
 Unobtanium Electrum - Lightweight Unobtanium client
 =====================================
 
